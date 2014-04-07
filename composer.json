@@ -1,0 +1,17 @@
+{
+    "name": "cors-behavior",
+    "description": "Implementing Cross-origin resource sharing support in your Yii Framework application.",
+    "keywords": ["yii", "extension", "cors"],
+    "homepage": "https://github.com/iAchilles/cors-behavior",
+    "type": "yii-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Igor Manturov, Jr.",
+            "email": "im@youtu.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
