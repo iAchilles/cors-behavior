@@ -39,7 +39,10 @@ class CorsBehavior extends CBehavior
         $route = Yii::app()->getUrlManager()
                 ->parseUrl(Yii::app()->getRequest());
         
-        if (in_array($route, $this->_route))
+        $allowedRoute = is_array($this->_route) ? in_array($route, $this->_route)
+                : $this->_route == '*';
+        
+        if ($allowedRoute)
         {
             
             $origin = $this->parseHeaders();
@@ -54,15 +57,17 @@ class CorsBehavior extends CBehavior
     
     /**
      * Sets list of routes for CORS-requests.
-     * @param array $route list of routes (controllerID/actionID)
+     * @param mixed $route An array of routes (controllerID/actionID). If you 
+     * want to allow CORS-requests for any routes, the value of the parameter
+     * must be a string that contains the "*". 
      * @throws CException
      */
     public function setRoute($route)
     {
-        if (!is_array($route))
+        if (!is_array($route) && $route !== '*')
         {
             throw new CException('The value of the "route" property must be an '
-                    . 'array.');
+                    . 'array or a string that contains the "*".');
         }
         
         $this->_route = $route;
