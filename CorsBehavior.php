@@ -148,7 +148,7 @@ class CorsBehavior extends CBehavior
     
     /**
      * Checks if CORS-request is allowed for the current route.
-     * @return boolean Wheter CORS-request is allowed for the current route.
+     * @return boolean Whether CORS-request is allowed for the current route.
      */
     protected function checkAllowedRoute()
     {
