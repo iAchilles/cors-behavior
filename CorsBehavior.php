@@ -36,13 +36,7 @@ class CorsBehavior extends CBehavior
             return;
         }
         
-        $route = Yii::app()->getUrlManager()
-                ->parseUrl(Yii::app()->getRequest());
-        
-        $allowedRoute = is_array($this->_route) ? in_array($route, $this->_route)
-                : $this->_route == '*';
-        
-        if ($allowedRoute)
+        if ($this->checkAllowedRoute())
         {
             
             $origin = $this->parseHeaders();
@@ -149,6 +143,26 @@ class CorsBehavior extends CBehavior
             return $headers['origin'];
         }
         
+    }
+    
+    
+    /**
+     * Checks if CORS-request is allowed for the current route.
+     * @return boolean Wheter CORS-request is allowed for the current route.
+     */
+    protected function checkAllowedRoute()
+    {
+        if ($this->_route === '*')
+        {
+            return true;
+        }
+        
+        $route = Yii::app()->getUrlManager()
+                ->parseUrl(Yii::app()->getRequest());
+        
+        $wildcardRoute = preg_replace('#([^/]*)$#', '*', $route, 1);
+        
+        return in_array($route, $this->_route) || in_array($wildcardRoute, $this->_route);
     }
     
     
