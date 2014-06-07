@@ -93,17 +93,17 @@ class CorsBehavior extends CBehavior
      * Parses headers and returns the value of the Origin request header.
      * @return mixed The origin that is allowed to access the resource. 
      * (the value of the Origin request header), otherwise false. 
-     * @throws CException
      */
     protected function parseHeaders()
     {
         if (!function_exists('getallheaders'))
         {
-            throw new CException('PHP version must be greater than or equal to '
-                    . '5.4.0, or PHP should be installed as an Apache module.');
+            $headers = $this->getAllHeaders();
         }
-        
-        $headers = getallheaders();
+        else
+        {
+            $headers = getallheaders();
+        }
         
         if ($headers === false)
         {
@@ -174,6 +174,27 @@ class CorsBehavior extends CBehavior
     protected function setAllowOriginHeader($origin)
     {
         header('Access-Control-Allow-Origin: ' . $origin);
+    }
+    
+    
+    /**
+     * This method is used to get HTTP headers when PHP runs as FastCGI.
+     * @return array An associative array of all the HTTP headers in the current request.
+     */
+    protected function getAllHeaders()
+    {
+       $headers = ''; 
+       
+       foreach ($_SERVER as $name => $value) 
+       { 
+           if (substr($name, 0, 5) == 'HTTP_') 
+           { 
+               $headers[str_replace(' ', '-', ucwords(strtolower
+                       (str_replace('_', ' ', substr($name, 5)))))] = $value; 
+           } 
+       } 
+       
+       return $headers; 
     }
    
 }

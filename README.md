@@ -6,7 +6,6 @@ Implementing Cross-origin resource sharing support in your Yii Framework applica
 ####Requirements
 
 - Yii 1.0 or above
-- PHP >= 5.4.0 Or PHP should be installed as an Apache module.
 	
 ####Installation
 	
