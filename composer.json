@@ -8,10 +8,10 @@
     "authors": [
         {
             "name": "Igor Manturov, Jr.",
-            "email": "im@youtu.me"
+            "email": "igor.manturov.jr@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.3.0"
     }
 }
