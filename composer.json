@@ -1,5 +1,5 @@
 {
-    "name": "cors-behavior",
+    "name": "iAchilles/cors-behavior",
     "description": "Implementing Cross-origin resource sharing support in your Yii Framework application.",
     "keywords": ["yii", "extension", "cors"],
     "homepage": "https://github.com/iAchilles/cors-behavior",
