@@ -112,7 +112,7 @@ class CorsBehavior extends CBehavior
         
         $headers = array_change_key_case($headers, CASE_LOWER);
         
-        if (!key_exists('origin', $headers))
+        if (!array_key_exists('origin', $headers))
         {
             return false;
         }
